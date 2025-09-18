@@ -63,6 +63,8 @@
     .socials a{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;background:rgba(15,23,42,0.04);font-size:14px;color:#374151;font-weight:500}
     .socials a:hover{background:rgba(15,23,42,0.08)}
 
+    #status { margin-top:8px; font-size:14px; font-weight:500; }
+
     footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center;padding-top:20px;border-top:1px solid #e5e7eb}
 
     @media (max-width:980px){main{grid-template-columns:1fr} .hero-actions{margin-left:0;}}
@@ -183,12 +185,13 @@
 
         <div class="card" id="contact">
           <h3>Contact</h3>
-          <form id="contactForm" action="mailto:youremail@example.com" method="post">
-            <input name="name" placeholder="Your name" required />
-            <input name="email" placeholder="Your email" type="email" required />
-            <textarea name="message" placeholder="Message" required></textarea>
+          <form id="contactForm">
+            <input id="name" name="name" placeholder="Your name" required />
+            <input id="email" name="email" placeholder="Your email" type="email" required />
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
             <button type="submit" class="btn">Send message</button>
           </form>
+          <div id="status" class="muted"></div>
 
           <div class="socials">
             <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -202,7 +205,46 @@
     <footer>© <span id="year"></span> Assoc. Prof. Tijjani Adam — Universiti Malaysia Perlis</footer>
   </div>
 
-  <script>
+  <!-- Firebase SDK and Form Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAOLd_NZd6zNUqGDJqT2YJvh1pCiX_cBmw",
+      authDomain: "personal-portfolio-3e6a6.firebaseapp.com",
+      projectId: "personal-portfolio-3e6a6",
+      storageBucket: "personal-portfolio-3e6a6.firebasestorage.app",
+      messagingSenderId: "1056671445083",
+      appId: "1:1056671445083:web:40bda4ac61a49710174f7e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      try {
+        await addDoc(collection(db, "contacts"), {
+          name, email, message,
+          timestamp: new Date()
+        });
+        status.textContent = "✅ Message saved successfully!";
+        form.reset();
+      } catch (err) {
+        console.error("Error:", err);
+        status.textContent = "❌ Error saving message.";
+      }
+    });
+
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Counters
@@ -246,14 +288,6 @@
       })
     });
     document.getElementById('showAllPubs').addEventListener('click',()=>{pubSearch.value='';pubs.forEach(p=>p.style.display='');});
-
-    // Contact form
-    document.getElementById('contactForm').addEventListener('submit',e=>{
-      e.preventDefault();
-      const form=e.target;
-      const body=`Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`;
-      window.location.href=`mailto:youremail@example.com?subject=Website%20Contact&body=${encodeURIComponent(body)}`;
-    });
 
     // Download CV placeholder
     document.getElementById('downloadCvBtn').addEventListener('click',e=>{
