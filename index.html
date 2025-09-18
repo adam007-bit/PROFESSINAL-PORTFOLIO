@@ -15,31 +15,38 @@
 
   <style>
     :root{
-      --bg:#f9fafb; --card:#ffffff; --muted:#6b7280; --accent:#0f766e; --accent-2:#1d4ed8; --shadow:rgba(15,23,42,0.08);
-      --radius:14px; --maxw:1180px; font-family: 'Inter', system-ui, sans-serif;
+      --bg:#f9fafb; --card:#ffffff; --muted:#6b7280; --accent:#0f766e; --accent-2:#1d4ed8;
+      --shadow:0 4px 20px rgba(15,23,42,0.08); --radius:14px; --maxw:1180px;
+      font-family: 'Inter', system-ui, sans-serif;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:#0f172a;line-height:1.6}
-    a{text-decoration:none;color:inherit}
+    body{background:var(--bg);color:#0f172a;line-height:1.7}
+    a{text-decoration:none;color:inherit;transition:.2s}
     .container{max-width:var(--maxw);margin:auto;padding:32px 20px}
 
     header{display:flex;align-items:center;gap:20px;padding-bottom:24px;border-bottom:1px solid #e5e7eb}
-    .avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;box-shadow:0 4px 12px var(--shadow)}
-    h1{margin:0;font-size:24px;font-weight:800;color:#111827}
+    .avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;
+      box-shadow:0 6px 16px rgba(0,0,0,.1)}
+    h1{margin:0;font-size:26px;font-weight:800;color:#111827}
     .tagline{color:var(--muted);margin-top:6px;font-size:15px}
     .hero-actions{margin-left:auto;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:white;padding:10px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:600;transition:all .2s}
-    .btn:hover{opacity:.9;transform:translateY(-1px)}
+    .btn{background:var(--accent);color:white;padding:10px 20px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
+      transition:all .25s;display:inline-flex;align-items:center;gap:8px}
+    .btn:hover{opacity:.9;transform:translateY(-1px) scale(1.02)}
     .btn.secondary{background:transparent;color:var(--accent-2);border:1px solid var(--accent-2)}
 
     main{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px}
-    .card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 6px 16px var(--shadow)}
+    .card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:.3s}
+    .card:hover{transform:translateY(-2px)}
 
     /* Contact */
-    form{display:grid;gap:10px}
-    input,textarea{padding:12px 14px;border-radius:8px;border:1px solid #d1d5db;font-size:14px}
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px 14px;border-radius:10px;border:1px solid #d1d5db;font-size:14px;transition:.2s}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 3px rgba(29,78,216,.15)}
     textarea{min-height:120px;resize:vertical}
-    #status { margin-top:8px; font-size:14px; font-weight:500; }
+    #status {margin-top:10px;font-size:14px;font-weight:500}
+    .loading{opacity:.7;pointer-events:none}
   </style>
 </head>
 <body>
@@ -63,12 +70,6 @@
         <div class="card intro">
           <h2>About</h2>
           <p>With an academic journey spanning BSc, MSc, and PhD, I currently serve as an Associate Professor at Universiti Malaysia Perlis. My work bridges research, teaching, and commercialization with a mission to deliver impactful technologies for society.</p>
-          <nav class="sections">
-            <a href="#research">Research</a>
-            <a href="#teaching">Teaching</a>
-            <a href="#grants">Grants</a>
-            <a href="#patents">Patents</a>
-          </nav>
         </div>
 
         <!-- Research -->
@@ -84,19 +85,6 @@
               <h4>High-efficiency Nanomaterial Sensor for Gas Detection</h4>
               <div class="muted">Journal of Sensors, 2024 · Scopus/ISI indexed</div>
             </div>
-            <div class="pub" data-tags="ai,fpga,2023">
-              <h4>FPGA-accelerated Deep Learning for Edge IoT</h4>
-              <div class="muted">IEEE IoT Journal, 2023</div>
-            </div>
-            <div class="pub" data-tags="renewable,energy,2022">
-              <h4>Optimization of DSSC Performance with Kenaf-Silica Composite</h4>
-              <div class="muted">Renewable Energy Letters, 2022</div>
-            </div>
-          </div>
-          <div class="socials">
-            <a href="#"><i class="fab fa-google"></i> Scholar</a>
-            <a href="#"><i class="fab fa-researchgate"></i> ResearchGate</a>
-            <a href="#"><i class="fab fa-orcid"></i> ORCID</a>
           </div>
         </div>
 
@@ -105,38 +93,13 @@
           <h3>Teaching & Supervision</h3>
           <p class="muted">Courses: Digital Electronics, IoT Systems, Advanced Materials. Supervised: PhD(10), MSc(20), UG(50).</p>
         </div>
-
-        <!-- Grants -->
-        <div id="grants" class="card">
-          <h3>Grants & Projects</h3>
-          <ul class="muted">
-            <li><strong>GreenVolt E-Tech</strong> — Industry collaboration, prototype commercialization</li>
-            <li><strong>DSSC Tester</strong> — Lab prototype, optimization and handoff</li>
-          </ul>
-        </div>
-
-        <!-- Patents -->
-        <div id="patents" class="card">
-          <h3>Patents & Commercialization</h3>
-          <ul class="muted">
-            <li>Kenaf-silica composites (Filed)</li>
-            <li>DSSC Tester (Filed)</li>
-            <li>FPGA Greenhouse Controller (Commercialized)</li>
-          </ul>
-        </div>
       </section>
 
       <aside>
-        <!-- KPIs Chart -->
+        <!-- KPIs -->
         <div class="card">
           <h3>KPIs Dashboard</h3>
           <canvas id="kpiChart" style="height:200px"></canvas>
-        </div>
-
-        <!-- Leadership -->
-        <div class="card">
-          <h3>Leadership</h3>
-          <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conference chair.</p>
         </div>
 
         <!-- Contact -->
@@ -146,14 +109,9 @@
             <input id="name" name="name" placeholder="Your name" required />
             <input id="email" name="email" placeholder="Your email" type="email" required />
             <textarea id="message" name="message" placeholder="Message" required></textarea>
-            <button type="submit" class="btn">Send message</button>
+            <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send message</button>
           </form>
           <div id="status" class="muted"></div>
-          <div class="socials">
-            <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="#"><i class="fab fa-google"></i> Scholar</a>
-            <a href="#"><i class="fab fa-researchgate"></i> ResearchGate</a>
-          </div>
         </div>
       </aside>
     </main>
@@ -161,14 +119,14 @@
     <footer>© <span id="year"></span> Assoc. Prof. Tijjani Adam — Universiti Malaysia Perlis</footer>
   </div>
 
-  <!-- Existing scripts -->
+  <!-- Chart.js init -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
     new Chart(document.getElementById('kpiChart'),{
       type:'bar',
       data:{
-        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
-        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
+        labels:['Publications','Citations','h-index','PhD Supervisions','Grants','Patents'],
+        datasets:[{label:'Metrics',data:[100,1200,18,10,3,5],backgroundColor:'#1d4ed8'}]
       },
       options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
     });
@@ -193,10 +151,13 @@
 
     const form = document.getElementById("contactForm");
     const status = document.getElementById("status");
+    const button = form.querySelector("button");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      console.log("Form submitted"); // debug
+      status.textContent = "⏳ Sending...";
+      status.style.color = "#6b7280";
+      button.classList.add("loading");
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -205,25 +166,25 @@
       if (!name || !email || !message) {
         status.textContent = "⚠️ Please fill in all fields.";
         status.style.color = "red";
+        button.classList.remove("loading");
         return;
       }
 
       try {
-        await addDoc(collection(db, "contacts"), {
-          name, email, message,
-          timestamp: new Date()
-        });
-        console.log("Saved to Firestore");
-        status.textContent = "✅ Message saved successfully!";
+        await addDoc(collection(db, "contacts"), { name, email, message, timestamp: new Date() });
+        status.textContent = "✅ Message sent successfully!";
         status.style.color = "green";
         form.reset();
       } catch (err) {
         console.error("Error:", err);
         status.textContent = "❌ Error: " + err.message;
         status.style.color = "red";
+      } finally {
+        button.classList.remove("loading");
       }
     });
   </script>
 </body>
 </html>
+
 
