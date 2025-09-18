@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assoc. Prof. Tijjani Adam — Researcher | Innovator | Educator</title>
+  <meta name="description" content="Assoc. Prof. Tijjani Adam — Nanotechnology, AI, IoT, Sensors. Researcher, educator and innovator." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a2d9b8d9b6.js" crossorigin="anonymous"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --bg:#fbfdff; --card:#ffffff; --muted:#6b7280; --accent:#0ea5a4; --accent-2:#2563eb; --glass: rgba(255,255,255,0.6);
+      --radius:14px; --maxw:1100px; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#f7fbfc, #eef7ff);color:#0f172a}
+    .container{max-width:var(--maxw);margin:36px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px}
+    .avatar{width:94px;height:94px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px}
+    h1{margin:0;font-size:20px}
+    .tagline{color:var(--muted);margin-top:6px}
+    .hero-actions{margin-left:auto;display:flex;gap:10px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn.secondary{background:transparent;color:var(--accent-2);border:1px solid rgba(37,99,235,0.12)}
+
+    main{display:grid;grid-template-columns:1fr 380px;gap:24px;margin-top:22px}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 6px 18px rgba(12,22,45,0.06)}
+
+    /* Left column */
+    .intro p{color:var(--muted);line-height:1.6}
+    nav.sections{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    nav.sections a{padding:8px 12px;border-radius:10px;text-decoration:none;color:var(--accent-2);background:rgba(37,99,235,0.06);font-weight:600}
+
+    /* KPIs */
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    .kpi{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(14,165,164,0.04),transparent)}
+    .kpi strong{display:block;font-size:20px}
+    .kpi span{color:var(--muted);font-size:13px}
+
+    /* Publications list */
+    .pubs-search{display:flex;gap:8px;margin-top:12px}
+    input[type=search]{flex:1;padding:10px;border-radius:10px;border:1px solid #e6eef8}
+    .pub-list{margin-top:12px;max-height:260px;overflow:auto}
+    .pub{padding:10px;border-radius:10px;border:1px solid #f1f5f9;margin-bottom:8px;background:linear-gradient(180deg,#fff, #fbfdff)}
+    .pub h4{margin:0 0 6px 0}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* Right column */
+    aside .card + .card{margin-top:12px}
+    .chart-wrap{height:200px}
+
+    /* Contact */
+    form{display:grid;gap:8px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid #e8eef6}
+    textarea{min-height:120px;resize:vertical}
+    .socials{display:flex;gap:8px;margin-top:8px}
+    .socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(15,23,42,0.03);text-decoration:none;color:var(--muted)}
+
+    footer{margin-top:22px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){main{grid-template-columns:1fr} .hero-actions{margin-left:0}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="avatar">TA</div>
+      <div>
+        <h1>Assoc. Prof. Tijjani Adam, Universiti Malaysia Perlis</h1>
+        <div class="tagline">Researcher | Innovator | Educator | Collaborator — Nanotechnology · AI · IoT · Sensors · Software Engineering</div>
+        <div class="muted" style="margin-top:6px">Bridging research, teaching and commercialization</div>
+      </div>
+
+      <div class="hero-actions">
+        <a class="btn" href="#" id="downloadCvBtn" download>📄 Download CV</a>
+        <a class="btn secondary" href="#contact">📬 Contact Me</a>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="card intro">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+            <div>
+              <h2 style="margin:0">About</h2>
+              <p class="muted" style="margin-top:8px">Academic journey: BSc → MSc → PhD → Current role. Timeline of positions, awards and fellowships. Mission: translate lab research into impactful technologies.</p>
+            </div>
+            <nav class="sections">
+              <a href="#research">Research</a>
+              <a href="#teaching">Teaching</a>
+              <a href="#grants">Grants</a>
+              <a href="#patents">Patents</a>
+            </nav>
+          </div>
+
+          <div class="kpis" style="margin-top:18px">
+            <div class="kpi">
+              <strong class="counter" data-target="100">0</strong>
+              <span>Publications</span>
+            </div>
+            <div class="kpi">
+              <strong class="counter" data-target="1200">0</strong>
+              <span>Citations</span>
+            </div>
+            <div class="kpi">
+              <strong class="counter" data-target="18">0</strong>
+              <span>h-index</span>
+            </div>
+            <div class="kpi">
+              <strong class="counter" data-target="10">0</strong>
+              <span>PhD Supervisions</span>
+            </div>
+            <div class="kpi">
+              <strong class="counter" data-target="3">0</strong>
+              <span>RM Million Grants</span>
+            </div>
+            <div class="kpi">
+              <strong class="counter" data-target="5">0</strong>
+              <span>Patents Filed</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="research" class="card" style="margin-top:14px">
+          <h3 style="margin-top:0">Research & Publications</h3>
+          <p class="muted">Thematic areas: Nanomaterials & Sensors; AI, IoT & FPGA Systems; Renewable Energy Optimization; Biomedical Physics & Imaging.</p>
+
+          <div class="pubs-search">
+            <input id="pubSearch" type="search" placeholder="Search publications by keyword or year" aria-label="Search publications">
+            <button class="btn" id="showAllPubs">Show all</button>
+          </div>
+
+          <div class="pub-list" id="pubList">
+            <!-- sample publications -->
+            <div class="pub" data-tags="nanomaterials,2024,sensors">
+              <h4>High-efficiency Nanomaterial Sensor for Gas Detection</h4>
+              <div class="muted">Journal of Sensors, 2024 · Scopus/ISI indexed · DOI: 10.xxxx/abc</div>
+            </div>
+            <div class="pub" data-tags="ai,fpga,2023">
+              <h4>FPGA-accelerated Deep Learning for Edge IoT</h4>
+              <div class="muted">IEEE IoT Journal, 2023</div>
+            </div>
+            <div class="pub" data-tags="renewable,energy,2022">
+              <h4>Optimization of DSSC Performance with Novel Kenaf-Silica Composite</h4>
+              <div class="muted">Renewable Energy Letters, 2022</div>
+            </div>
+            <!-- More items can be dynamically injected -->
+          </div>
+
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="socials" href="#" aria-label="Google Scholar">🔗 Google Scholar</a>
+            <a class="socials" href="#" aria-label="ResearchGate">🔗 ResearchGate</a>
+            <a class="socials" href="#" aria-label="ORCID">🔗 ORCID</a>
+          </div>
+        </div>
+
+        <div id="teaching" class="card" style="margin-top:14px">
+          <h3 style="margin-top:0">Teaching & Supervision</h3>
+          <p class="muted">Representative courses: Digital Electronics, IoT Systems, Advanced Materials. Supervised: PhD(10), MSc(20), UG(50).</p>
+
+          <details>
+            <summary style="cursor:pointer">Supervised students & thesis topics</summary>
+            <ul style="margin-top:8px">
+              <li>PhD — IoT-enabled greenhouse control using FPGAs</li>
+              <li>MSc — Kenaf-silica composite for energy harvesting</li>
+              <li>UG — Low-cost sensor networks for air quality</li>
+            </ul>
+          </details>
+        </div>
+
+        <div id="grants" class="card" style="margin-top:14px">
+          <h3 style="margin-top:0">Grants & Projects</h3>
+          <p class="muted">Selected: RM 3M+ in funded projects. Roles: PI & Co-PI. Conferences organized: isMED, WESTAC 2025.</p>
+
+          <ul style="margin-top:8px;color:var(--muted)">
+            <li><strong>GreenVolt E-Tech</strong> — Industry collaboration, prototype commercialization</li>
+            <li><strong>DSSC Tester</strong> — Lab prototype, optimization and handoff</li>
+          </ul>
+        </div>
+
+        <div id="patents" class="card" style="margin-top:14px">
+          <h3 style="margin-top:0">Patents & Commercialization</h3>
+          <ul style="margin-top:8px;color:var(--muted)">
+            <li>Kenaf-silica composites (Filed)</li>
+            <li>DSSC Tester (Filed)</li>
+            <li>FPGA Greenhouse Controller (Commercialized)</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin-top:0">KPIs Dashboard</h3>
+          <div class="chart-wrap">
+            <canvas id="kpiChart"></canvas>
+          </div>
+          <div style="margin-top:10px" class="muted">Animated counters and an overview chart; use this area for interactive infographics or embedded dashboards.</div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Patents & Leadership</h3>
+          <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conferences chaired.</p>
+        </div>
+
+        <div class="card" id="contact">
+          <h3 style="margin-top:0">Contact & Networking</h3>
+          <form id="contactForm" action="mailto:youremail@example.com" method="post" enctype="text/plain">
+            <input name="name" placeholder="Your name" required />
+            <input name="email" placeholder="Your email" type="email" required />
+            <textarea name="message" placeholder="Message" required></textarea>
+            <button type="submit" class="btn">Send message</button>
+          </form>
+
+          <div class="socials" style="margin-top:12px">
+            <a href="#">LinkedIn</a>
+            <a href="#">Google Scholar</a>
+            <a href="#">ResearchGate</a>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer class="muted">© <span id="year"></span> Assoc. Prof. Tijjani Adam — Universiti Malaysia Perlis · Designed for professional academic profile</footer>
+  </div>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animated counters when visible
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // lower = faster
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = +el.dataset.target;
+          let start=0;
+          const step = Math.ceil(target / speed);
+          const timer = setInterval(()=>{
+            start += step;
+            if(start >= target){ el.textContent = target; clearInterval(timer);} else el.textContent = start;
+          }, 12);
+          io.unobserve(el);
+        }
+      })
+    }, {threshold:0.3});
+    counters.forEach(c=>io.observe(c));
+
+    // KPI Chart
+    const ctx = document.getElementById('kpiChart').getContext('2d');
+    new Chart(ctx,{
+      type:'bar',
+      data:{
+        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
+        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5]}]
+      },
+      options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+    });
+
+    // Publication search filter
+    const pubSearch = document.getElementById('pubSearch');
+    const pubList = document.getElementById('pubList');
+    const pubs = Array.from(pubList.querySelectorAll('.pub'));
+    pubSearch.addEventListener('input', ()=>{
+      const q = pubSearch.value.trim().toLowerCase();
+      pubs.forEach(p=>{
+        const tags = (p.dataset.tags||'') + ' ' + p.textContent.toLowerCase();
+        p.style.display = tags.includes(q) ? '' : 'none';
+      })
+    });
+    document.getElementById('showAllPubs').addEventListener('click', ()=>{pubSearch.value='';pubs.forEach(p=>p.style.display='');});
+
+    // Contact form fallback: show a notice (since mailto may not work in all browsers)
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      // allow default mailto action but also show a toast
+      e.preventDefault();
+      const form = e.target;
+      const body = `Name: ${form.name.value}\nEmail: ${form.email.value}\n\n${form.message.value}`;
+      window.location.href = `mailto:youremail@example.com?subject=Website%20Contact&body=${encodeURIComponent(body)}`;
+    });
+
+    // Download CV button behavior (placeholder)
+    document.getElementById('downloadCvBtn').addEventListener('click', (e)=>{
+      // If you have a CV file place its path in href. For now we show a quick feedback.
+      const href = e.target.getAttribute('href');
+      if(href === '#'){
+        e.preventDefault();
+        alert('Replace the Download CV link with a real file path (e.g., /files/TijjaniAdam_CV.pdf)');
+      }
+    });
+
+    // Accessibility: focus outlines
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Tab') document.body.classList.add('show-focus'); });
+  </script>
+</body>
+</html>
