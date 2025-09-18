@@ -35,39 +35,11 @@
     main{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px}
     .card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 6px 16px var(--shadow)}
 
-    /* Intro */
-    .intro p{color:var(--muted);line-height:1.7;font-size:15px}
-    nav.sections{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    nav.sections a{padding:8px 14px;border-radius:10px;text-decoration:none;color:var(--accent-2);background:rgba(29,78,216,0.08);font-weight:600;font-size:14px}
-
-    /* KPIs */
-    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:18px}
-    .kpi{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(14,165,164,0.05),transparent)}
-    .kpi strong{display:block;font-size:22px;color:#111827}
-    .kpi span{color:var(--muted);font-size:13px}
-
-    /* Publications */
-    .pubs-search{display:flex;gap:8px;margin-top:14px}
-    input[type=search]{flex:1;padding:10px 14px;border-radius:10px;border:1px solid #d1d5db;font-size:14px}
-    .pub-list{margin-top:14px;max-height:260px;overflow:auto}
-    .pub{padding:12px;border-radius:10px;border:1px solid #e5e7eb;margin-bottom:10px;background:#fefefe;transition:all .2s}
-    .pub:hover{background:#f9fafb;transform:translateX(2px)}
-    .pub h4{margin:0 0 6px 0;font-size:15px}
-    .muted{color:var(--muted);font-size:13px}
-
     /* Contact */
     form{display:grid;gap:10px}
     input,textarea{padding:12px 14px;border-radius:8px;border:1px solid #d1d5db;font-size:14px}
     textarea{min-height:120px;resize:vertical}
-    .socials{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .socials a{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;background:rgba(15,23,42,0.04);font-size:14px;color:#374151;font-weight:500}
-    .socials a:hover{background:rgba(15,23,42,0.08)}
-
     #status { margin-top:8px; font-size:14px; font-weight:500; }
-
-    footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center;padding-top:20px;border-top:1px solid #e5e7eb}
-
-    @media (max-width:980px){main{grid-template-columns:1fr} .hero-actions{margin-left:0;}}
   </style>
 </head>
 <body>
@@ -79,7 +51,6 @@
         <div class="tagline">Universiti Malaysia Perlis · Researcher | Educator | Innovator — Nanotechnology · AI · IoT · Sensors</div>
         <div class="muted" style="margin-top:6px">Translating research into impactful technologies</div>
       </div>
-
       <div class="hero-actions">
         <a class="btn" href="#" id="downloadCvBtn" download><i class="fas fa-file-pdf"></i> Download CV</a>
         <a class="btn secondary" href="#contact"><i class="fas fa-envelope"></i> Contact Me</a>
@@ -88,36 +59,26 @@
 
     <main>
       <section>
+        <!-- About -->
         <div class="card intro">
           <h2>About</h2>
           <p>With an academic journey spanning BSc, MSc, and PhD, I currently serve as an Associate Professor at Universiti Malaysia Perlis. My work bridges research, teaching, and commercialization with a mission to deliver impactful technologies for society.</p>
-
           <nav class="sections">
             <a href="#research">Research</a>
             <a href="#teaching">Teaching</a>
             <a href="#grants">Grants</a>
             <a href="#patents">Patents</a>
           </nav>
-
-          <div class="kpis">
-            <div class="kpi"><strong class="counter" data-target="100">0</strong><span>Publications</span></div>
-            <div class="kpi"><strong class="counter" data-target="1200">0</strong><span>Citations</span></div>
-            <div class="kpi"><strong class="counter" data-target="18">0</strong><span>h-index</span></div>
-            <div class="kpi"><strong class="counter" data-target="10">0</strong><span>PhD Supervisions</span></div>
-            <div class="kpi"><strong class="counter" data-target="3">0</strong><span>RM Million Grants</span></div>
-            <div class="kpi"><strong class="counter" data-target="5">0</strong><span>Patents Filed</span></div>
-          </div>
         </div>
 
+        <!-- Research -->
         <div id="research" class="card">
           <h3>Research & Publications</h3>
           <p class="muted">Key areas: Nanomaterials & Sensors · AI, IoT & FPGA Systems · Renewable Energy · Biomedical Physics</p>
-
           <div class="pubs-search">
             <input id="pubSearch" type="search" placeholder="Search publications...">
             <button class="btn" id="showAllPubs">Show all</button>
           </div>
-
           <div class="pub-list" id="pubList">
             <div class="pub" data-tags="nanomaterials,2024,sensors">
               <h4>High-efficiency Nanomaterial Sensor for Gas Detection</h4>
@@ -132,7 +93,6 @@
               <div class="muted">Renewable Energy Letters, 2022</div>
             </div>
           </div>
-
           <div class="socials">
             <a href="#"><i class="fab fa-google"></i> Scholar</a>
             <a href="#"><i class="fab fa-researchgate"></i> ResearchGate</a>
@@ -140,19 +100,13 @@
           </div>
         </div>
 
+        <!-- Teaching -->
         <div id="teaching" class="card">
           <h3>Teaching & Supervision</h3>
           <p class="muted">Courses: Digital Electronics, IoT Systems, Advanced Materials. Supervised: PhD(10), MSc(20), UG(50).</p>
-          <details>
-            <summary>Student Theses</summary>
-            <ul style="margin-top:8px">
-              <li>PhD — IoT-enabled greenhouse control with FPGAs</li>
-              <li>MSc — Kenaf-silica composite for energy harvesting</li>
-              <li>UG — Low-cost sensor networks for air quality</li>
-            </ul>
-          </details>
         </div>
 
+        <!-- Grants -->
         <div id="grants" class="card">
           <h3>Grants & Projects</h3>
           <ul class="muted">
@@ -161,6 +115,7 @@
           </ul>
         </div>
 
+        <!-- Patents -->
         <div id="patents" class="card">
           <h3>Patents & Commercialization</h3>
           <ul class="muted">
@@ -172,17 +127,19 @@
       </section>
 
       <aside>
+        <!-- KPIs Chart -->
         <div class="card">
           <h3>KPIs Dashboard</h3>
           <canvas id="kpiChart" style="height:200px"></canvas>
-          <div class="muted" style="margin-top:10px">Interactive chart showing academic performance metrics.</div>
         </div>
 
+        <!-- Leadership -->
         <div class="card">
           <h3>Leadership</h3>
           <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conference chair.</p>
         </div>
 
+        <!-- Contact -->
         <div class="card" id="contact">
           <h3>Contact</h3>
           <form id="contactForm">
@@ -192,7 +149,6 @@
             <button type="submit" class="btn">Send message</button>
           </form>
           <div id="status" class="muted"></div>
-
           <div class="socials">
             <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
             <a href="#"><i class="fab fa-google"></i> Scholar</a>
@@ -205,7 +161,20 @@
     <footer>© <span id="year"></span> Assoc. Prof. Tijjani Adam — Universiti Malaysia Perlis</footer>
   </div>
 
-  <!-- Firebase SDK and Form Script -->
+  <!-- Existing scripts -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    new Chart(document.getElementById('kpiChart'),{
+      type:'bar',
+      data:{
+        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
+        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
+      },
+      options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+    });
+  </script>
+
+  <!-- Firebase Contact Form -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
@@ -227,72 +196,32 @@
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("message").value;
+      console.log("Form submitted"); // debug
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        status.textContent = "⚠️ Please fill in all fields.";
+        status.style.color = "red";
+        return;
+      }
 
       try {
         await addDoc(collection(db, "contacts"), {
           name, email, message,
           timestamp: new Date()
         });
+        console.log("Saved to Firestore");
         status.textContent = "✅ Message saved successfully!";
+        status.style.color = "green";
         form.reset();
       } catch (err) {
         console.error("Error:", err);
-        status.textContent = "❌ Error saving message.";
+        status.textContent = "❌ Error: " + err.message;
+        status.style.color = "red";
       }
-    });
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Counters
-    const counters = document.querySelectorAll('.counter');
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const el = entry.target;
-          const target = +el.dataset.target;
-          let start=0;
-          const step = Math.ceil(target / 200);
-          const timer = setInterval(()=>{
-            start += step;
-            if(start >= target){ el.textContent = target; clearInterval(timer);} else el.textContent = start;
-          }, 15);
-          io.unobserve(el);
-        }
-      })
-    }, {threshold:0.3});
-    counters.forEach(c=>io.observe(c));
-
-    // Chart
-    new Chart(document.getElementById('kpiChart'),{
-      type:'bar',
-      data:{
-        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
-        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
-      },
-      options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
-    });
-
-    // Publication search
-    const pubSearch=document.getElementById('pubSearch');
-    const pubList=document.getElementById('pubList');
-    const pubs=Array.from(pubList.querySelectorAll('.pub'));
-    pubSearch.addEventListener('input',()=>{
-      const q=pubSearch.value.trim().toLowerCase();
-      pubs.forEach(p=>{
-        const tags=(p.dataset.tags||'')+p.textContent.toLowerCase();
-        p.style.display=tags.includes(q)?'':'none';
-      })
-    });
-    document.getElementById('showAllPubs').addEventListener('click',()=>{pubSearch.value='';pubs.forEach(p=>p.style.display='');});
-
-    // Download CV placeholder
-    document.getElementById('downloadCvBtn').addEventListener('click',e=>{
-      const href=e.target.getAttribute('href');
-      if(href==="#"){e.preventDefault();alert('Replace with actual CV file path.');}
     });
   </script>
 </body>
