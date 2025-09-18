@@ -15,38 +15,58 @@
 
   <style>
     :root{
-      --bg:#f9fafb; --card:#ffffff; --muted:#6b7280; --accent:#0f766e; --accent-2:#1d4ed8;
-      --shadow:0 4px 20px rgba(15,23,42,0.08); --radius:14px; --maxw:1180px;
-      font-family: 'Inter', system-ui, sans-serif;
+      --bg:#f9fafb; --card:#ffffff; --muted:#6b7280; --accent:#0f766e; --accent-2:#1d4ed8; --shadow:rgba(15,23,42,0.08);
+      --radius:14px; --maxw:1180px; font-family: 'Inter', system-ui, sans-serif;
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);color:#0f172a;line-height:1.7}
-    a{text-decoration:none;color:inherit;transition:.2s}
+    body{background:var(--bg);color:#0f172a;line-height:1.6}
+    a{text-decoration:none;color:inherit}
     .container{max-width:var(--maxw);margin:auto;padding:32px 20px}
 
     header{display:flex;align-items:center;gap:20px;padding-bottom:24px;border-bottom:1px solid #e5e7eb}
-    .avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;
-      box-shadow:0 6px 16px rgba(0,0,0,.1)}
-    h1{margin:0;font-size:26px;font-weight:800;color:#111827}
+    .avatar{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:28px;box-shadow:0 4px 12px var(--shadow)}
+    h1{margin:0;font-size:24px;font-weight:800;color:#111827}
     .tagline{color:var(--muted);margin-top:6px;font-size:15px}
     .hero-actions{margin-left:auto;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{background:var(--accent);color:white;padding:10px 20px;border-radius:10px;border:0;cursor:pointer;font-weight:600;
-      transition:all .25s;display:inline-flex;align-items:center;gap:8px}
-    .btn:hover{opacity:.9;transform:translateY(-1px) scale(1.02)}
+    .btn{background:var(--accent);color:white;padding:10px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:600;transition:all .2s}
+    .btn:hover{opacity:.9;transform:translateY(-1px)}
     .btn.secondary{background:transparent;color:var(--accent-2);border:1px solid var(--accent-2)}
 
     main{display:grid;grid-template-columns:1fr 360px;gap:28px;margin-top:28px}
-    .card{background:var(--card);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:.3s}
-    .card:hover{transform:translateY(-2px)}
+    .card{background:var(--card);border-radius:var(--radius);padding:20px;box-shadow:0 6px 16px var(--shadow)}
+
+    /* Intro */
+    .intro p{color:var(--muted);line-height:1.7;font-size:15px}
+    nav.sections{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    nav.sections a{padding:8px 14px;border-radius:10px;text-decoration:none;color:var(--accent-2);background:rgba(29,78,216,0.08);font-weight:600;font-size:14px}
+
+    /* KPIs */
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:18px}
+    .kpi{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(14,165,164,0.05),transparent)}
+    .kpi strong{display:block;font-size:22px;color:#111827}
+    .kpi span{color:var(--muted);font-size:13px}
+
+    /* Publications */
+    .pubs-search{display:flex;gap:8px;margin-top:14px}
+    input[type=search]{flex:1;padding:10px 14px;border-radius:10px;border:1px solid #d1d5db;font-size:14px}
+    .pub-list{margin-top:14px;max-height:260px;overflow:auto}
+    .pub{padding:12px;border-radius:10px;border:1px solid #e5e7eb;margin-bottom:10px;background:#fefefe;transition:all .2s}
+    .pub:hover{background:#f9fafb;transform:translateX(2px)}
+    .pub h4{margin:0 0 6px 0;font-size:15px}
+    .muted{color:var(--muted);font-size:13px}
 
     /* Contact */
-    form{display:grid;gap:12px}
-    input,textarea{padding:12px 14px;border-radius:10px;border:1px solid #d1d5db;font-size:14px;transition:.2s}
-    input:focus,textarea:focus{outline:none;border-color:var(--accent-2);box-shadow:0 0 0 3px rgba(29,78,216,.15)}
+    form{display:grid;gap:10px}
+    input,textarea{padding:12px 14px;border-radius:8px;border:1px solid #d1d5db;font-size:14px}
     textarea{min-height:120px;resize:vertical}
-    #status {margin-top:10px;font-size:14px;font-weight:500}
-    .loading{opacity:.7;pointer-events:none}
+    #status{margin-top:6px;font-size:14px;font-weight:500}
+    .socials{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .socials a{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;background:rgba(15,23,42,0.04);font-size:14px;color:#374151;font-weight:500}
+    .socials a:hover{background:rgba(15,23,42,0.08)}
+
+    footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center;padding-top:20px;border-top:1px solid #e5e7eb}
+
+    @media (max-width:980px){main{grid-template-columns:1fr} .hero-actions{margin-left:0;}}
   </style>
 </head>
 <body>
@@ -58,6 +78,7 @@
         <div class="tagline">Universiti Malaysia Perlis · Researcher | Educator | Innovator — Nanotechnology · AI · IoT · Sensors</div>
         <div class="muted" style="margin-top:6px">Translating research into impactful technologies</div>
       </div>
+
       <div class="hero-actions">
         <a class="btn" href="#" id="downloadCvBtn" download><i class="fas fa-file-pdf"></i> Download CV</a>
         <a class="btn secondary" href="#contact"><i class="fas fa-envelope"></i> Contact Me</a>
@@ -66,52 +87,116 @@
 
     <main>
       <section>
-        <!-- About -->
         <div class="card intro">
           <h2>About</h2>
           <p>With an academic journey spanning BSc, MSc, and PhD, I currently serve as an Associate Professor at Universiti Malaysia Perlis. My work bridges research, teaching, and commercialization with a mission to deliver impactful technologies for society.</p>
+
+          <nav class="sections">
+            <a href="#research">Research</a>
+            <a href="#teaching">Teaching</a>
+            <a href="#grants">Grants</a>
+            <a href="#patents">Patents</a>
+          </nav>
+
+          <div class="kpis">
+            <div class="kpi"><strong class="counter" data-target="100">0</strong><span>Publications</span></div>
+            <div class="kpi"><strong class="counter" data-target="1200">0</strong><span>Citations</span></div>
+            <div class="kpi"><strong class="counter" data-target="18">0</strong><span>h-index</span></div>
+            <div class="kpi"><strong class="counter" data-target="10">0</strong><span>PhD Supervisions</span></div>
+            <div class="kpi"><strong class="counter" data-target="3">0</strong><span>RM Million Grants</span></div>
+            <div class="kpi"><strong class="counter" data-target="5">0</strong><span>Patents Filed</span></div>
+          </div>
         </div>
 
-        <!-- Research -->
         <div id="research" class="card">
           <h3>Research & Publications</h3>
           <p class="muted">Key areas: Nanomaterials & Sensors · AI, IoT & FPGA Systems · Renewable Energy · Biomedical Physics</p>
+
           <div class="pubs-search">
             <input id="pubSearch" type="search" placeholder="Search publications...">
             <button class="btn" id="showAllPubs">Show all</button>
           </div>
+
           <div class="pub-list" id="pubList">
             <div class="pub" data-tags="nanomaterials,2024,sensors">
               <h4>High-efficiency Nanomaterial Sensor for Gas Detection</h4>
               <div class="muted">Journal of Sensors, 2024 · Scopus/ISI indexed</div>
             </div>
+            <div class="pub" data-tags="ai,fpga,2023">
+              <h4>FPGA-accelerated Deep Learning for Edge IoT</h4>
+              <div class="muted">IEEE IoT Journal, 2023</div>
+            </div>
+            <div class="pub" data-tags="renewable,energy,2022">
+              <h4>Optimization of DSSC Performance with Kenaf-Silica Composite</h4>
+              <div class="muted">Renewable Energy Letters, 2022</div>
+            </div>
+          </div>
+
+          <div class="socials">
+            <a href="#"><i class="https://scholar.google.com/citations?user=68us_EUAAAAJ&hl=en&authuser=1"></i> Scholar</a>
+            <a href="#"><i class="https://www.scopus.com/authid/detail.uri?authorId=55074964600"></i> Scopus</a>
+            <a href="#"><i class="fab fa-orcid"></i> ORCID</a>
           </div>
         </div>
 
-        <!-- Teaching -->
         <div id="teaching" class="card">
           <h3>Teaching & Supervision</h3>
           <p class="muted">Courses: Digital Electronics, IoT Systems, Advanced Materials. Supervised: PhD(10), MSc(20), UG(50).</p>
+          <details>
+            <summary>Student Theses</summary>
+            <ul style="margin-top:8px">
+              <li>PhD — IoT-enabled greenhouse control with FPGAs</li>
+              <li>MSc — Kenaf-silica composite for energy harvesting</li>
+              <li>UG — Low-cost sensor networks for air quality</li>
+            </ul>
+          </details>
+        </div>
+
+        <div id="grants" class="card">
+          <h3>Grants & Projects</h3>
+          <ul class="muted">
+            <li><strong>GreenVolt E-Tech</strong> — Industry collaboration, prototype commercialization</li>
+            <li><strong>DSSC Tester</strong> — Lab prototype, optimization and handoff</li>
+          </ul>
+        </div>
+
+        <div id="patents" class="card">
+          <h3>Patents & Commercialization</h3>
+          <ul class="muted">
+            <li>Kenaf-silica composites (Filed)</li>
+            <li>DSSC Tester (Filed)</li>
+            <li>FPGA Greenhouse Controller (Commercialized)</li>
+          </ul>
         </div>
       </section>
 
       <aside>
-        <!-- KPIs -->
         <div class="card">
           <h3>KPIs Dashboard</h3>
           <canvas id="kpiChart" style="height:200px"></canvas>
+          <div class="muted" style="margin-top:10px">Interactive chart showing academic performance metrics.</div>
         </div>
 
-        <!-- Contact -->
+        <div class="card">
+          <h3>Leadership</h3>
+          <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conference chair.</p>
+        </div>
+
         <div class="card" id="contact">
           <h3>Contact</h3>
           <form id="contactForm">
             <input id="name" name="name" placeholder="Your name" required />
             <input id="email" name="email" placeholder="Your email" type="email" required />
             <textarea id="message" name="message" placeholder="Message" required></textarea>
-            <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send message</button>
+            <button type="submit" class="btn">Send message</button>
           </form>
           <div id="status" class="muted"></div>
+
+          <div class="socials">
+            <a href="#"><i class="https://www.linkedin.com/feed/?midToken=AQFqvpnh-1tnbg&midSig=1DZPP09zctZbU1&trk=eml-email_next_best_action_digest_01-header-0-home_glimmer_static_badging_with_count&trkEmail=eml-email_next_best_action_digest_01-header-0-home_glimmer_static_badging_with_count-null-d9la4b%7Emfdpx2n0%7Ec0-null-null&eid=d9la4b-mfdpx2n0-c0"></i> LinkedIn</a>
+            <a href="#"><i class="https://scholar.google.com/citations?user=68us_EUAAAAJ&hl=en&authuser=1"></i> Scholar</a>
+            <a href="#"><i class="https://www.scopus.com/authid/detail.uri?authorId=55074964600"></i>Scopus</a>
+          </div>
         </div>
       </aside>
     </main>
@@ -119,17 +204,50 @@
     <footer>© <span id="year"></span> Assoc. Prof. Tijjani Adam — Universiti Malaysia Perlis</footer>
   </div>
 
-  <!-- Chart.js init -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Counters
+    const counters = document.querySelectorAll('.counter');
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = +el.dataset.target;
+          let start=0;
+          const step = Math.ceil(target / 200);
+          const timer = setInterval(()=>{
+            start += step;
+            if(start >= target){ el.textContent = target; clearInterval(timer);} else el.textContent = start;
+          }, 15);
+          io.unobserve(el);
+        }
+      })
+    }, {threshold:0.3});
+    counters.forEach(c=>io.observe(c));
+
+    // Chart
     new Chart(document.getElementById('kpiChart'),{
       type:'bar',
       data:{
-        labels:['Publications','Citations','h-index','PhD Supervisions','Grants','Patents'],
-        datasets:[{label:'Metrics',data:[100,1200,18,10,3,5],backgroundColor:'#1d4ed8'}]
+        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
+        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
       },
       options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
     });
+
+    // Publication search
+    const pubSearch=document.getElementById('pubSearch');
+    const pubList=document.getElementById('pubList');
+    const pubs=Array.from(pubList.querySelectorAll('.pub'));
+    pubSearch.addEventListener('input',()=>{
+      const q=pubSearch.value.trim().toLowerCase();
+      pubs.forEach(p=>{
+        const tags=(p.dataset.tags||'')+p.textContent.toLowerCase();
+        p.style.display=tags.includes(q)?'':'none';
+      })
+    });
+    document.getElementById('showAllPubs').addEventListener('click',()=>{pubSearch.value='';pubs.forEach(p=>p.style.display='');});
   </script>
 
   <!-- Firebase Contact Form -->
@@ -151,13 +269,9 @@
 
     const form = document.getElementById("contactForm");
     const status = document.getElementById("status");
-    const button = form.querySelector("button");
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      status.textContent = "⏳ Sending...";
-      status.style.color = "#6b7280";
-      button.classList.add("loading");
 
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
@@ -166,9 +280,11 @@
       if (!name || !email || !message) {
         status.textContent = "⚠️ Please fill in all fields.";
         status.style.color = "red";
-        button.classList.remove("loading");
         return;
       }
+
+      status.textContent = "⏳ Sending...";
+      status.style.color = "#6b7280";
 
       try {
         await addDoc(collection(db, "contacts"), { name, email, message, timestamp: new Date() });
@@ -179,8 +295,6 @@
         console.error("Error:", err);
         status.textContent = "❌ Error: " + err.message;
         status.style.color = "red";
-      } finally {
-        button.classList.remove("loading");
       }
     });
   </script>
