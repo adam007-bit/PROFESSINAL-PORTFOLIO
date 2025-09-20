@@ -102,9 +102,7 @@
             <div class="kpi"><strong class="counter" data-target="100">0</strong><span>Publications</span></div>
             <div class="kpi"><strong class="counter" data-target="1200">0</strong><span>Citations</span></div>
             <div class="kpi"><strong class="counter" data-target="18">0</strong><span>h-index</span></div>
-            <div class="kpi"><strong class="counter" data-target="10">0</strong><span>PhD Supervisions</span></div>
            
-            <div class="kpi"><strong class="counter" data-target="5">0</strong><span>Patents Filed</span></div>
           </div>
         </div>
           
@@ -245,7 +243,7 @@
     new Chart(document.getElementById('kpiChart'),{
       type:'bar',
       data:{
-        labels:['Publications','Citations','h-index','PhD Supervisions','Grants (RMk)','Patents'],
+        labels:['Publications','Citations','h-index','PhD Supervisions',],
         datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
       },
       options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
