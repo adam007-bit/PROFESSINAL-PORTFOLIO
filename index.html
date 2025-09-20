@@ -243,8 +243,8 @@
     new Chart(document.getElementById('kpiChart'),{
       type:'bar',
       data:{
-        labels:['Publications','Citations','h-index','PhD Supervisions',],
-        datasets:[{label:'Metrics',data:[100,1200,18,10,3000,5],backgroundColor:'#1d4ed8'}]
+        labels:['Publications','Citations','h-index',,],
+        datasets:[{label:'Metrics',data:[100,1200,18,],backgroundColor:'#1d4ed8'}]
       },
       options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
     });
