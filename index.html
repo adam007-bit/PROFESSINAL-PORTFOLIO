@@ -183,6 +183,12 @@
           <canvas id="kpiChart" style="height:200px"></canvas>
           <div class="muted" style="margin-top:10px">Interactive chart showing academic performance metrics.</div>
         </div>
+<!-- Add these inside your <aside> AFTER Scopus Dashboard card -->
+<div class="card">
+  <h3>Google Scholar</h3>
+  <canvas id="pubTrendChart" style="height:200px"></canvas>
+</div>
+
 
         <div class="card">
           <h3>Leadership</h3>
@@ -248,6 +254,32 @@
       },
       options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
     });
+// Publications Trend Chart
+new Chart(document.getElementById('pubTrendChart'), {
+  type: 'line',
+  data: {
+    labels: ['Publications','Citations','h-index',],
+    datasets: [{
+      label: 'Publications',
+      data: [5, 12, 20,],
+      borderColor: '#0f766e',
+      backgroundColor: 'rgba(15,118,110,0.2)',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false }
+    },
+    scales: {
+      y: { beginAtZero: true }
+    }
+  }
+});
+
+
 
     // Publication search
     const pubSearch=document.getElementById('pubSearch');
