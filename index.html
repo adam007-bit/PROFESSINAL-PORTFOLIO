@@ -226,23 +226,20 @@
         </div>
 
         <div class="card" id="contact">
-          <h3>Contact</h3>
-       <!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/xqayeqep"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+  <h3>Contact</h3>
+  <form id="contactForm" action="https://formspree.io/f/xqayeqep" method="POST">
+    <label>
+      Your email:
+      <input type="email" name="email" required>
+    </label>
+    <label>
+      Your message:
+      <textarea name="message" required></textarea>
+    </label>
+    <button type="submit" class="btn">Send</button>
+  </form>
+  <div id="status" class="muted"></div>
+</div>
           <div id="status" class="muted"></div>
 <div class="socials">
   <a href="https://www.linkedin.com/feed/?midToken=AQFqvpnh-1tnbg&midSig=1DZPP09zctZbU1&trk=eml-email_next_best_action_digest_01-header-0-home_glimmer_static_badging_with_count&trkEmail=eml-email_next_best_action_digest_01-header-0-home_glimmer_static_badging_with_count-null-d9la4b%7Emfdpx2n0%7Ec0-null-null&eid=d9la4b-mfdpx2n0-c0" target="_blank">
@@ -335,7 +332,7 @@ new Chart(document.getElementById('pubTrendChart'), {
     document.getElementById('showAllPubs').addEventListener('click',()=>{pubSearch.value='';pubs.forEach(p=>p.style.display='');});
   </script>
 
-  <!-- Firebase Contact Form -->
+  <!-- Formspree Contact Form-->
  <script>
   const form = document.getElementById("contactForm");
   const status = document.getElementById("status");
