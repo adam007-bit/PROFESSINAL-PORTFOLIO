@@ -67,6 +67,42 @@
     footer{margin-top:32px;color:var(--muted);font-size:13px;text-align:center;padding-top:20px;border-top:1px solid #e5e7eb}
 
     @media (max-width:980px){main{grid-template-columns:1fr} .hero-actions{margin-left:0;}}
+    
+    /* Contact form inputs */
+#contactForm label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #0f172a;
+  display: block;
+  margin-bottom: 6px;
+}
+
+#contactForm input,
+#contactForm textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  background: #f9fafb;
+  transition: all 0.2s;
+}
+
+/* Focus effect */
+#contactForm input:focus,
+#contactForm textarea:focus {
+  outline: none;
+  border-color: var(--accent-2);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15); /* blue glow */
+}
+
+/* Textarea bigger */
+#contactForm textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
   </style>
 </head>
 <body>
