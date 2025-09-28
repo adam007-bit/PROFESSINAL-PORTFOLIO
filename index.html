@@ -135,20 +135,24 @@
              <a href="#patents">Expertise</a>
           </nav>
           
-       <!-- Scopus Section -->
+     <!-- Scopus Section -->
 <h3 style="margin-top:20px; font-size:18px; font-weight:700; color:#0f172a;">Scopus</h3>
-<div class="kpis">
-  <div class="kpi"><strong class="counter" data-target="100">0</strong><span>Publications</span></div>
-  <div class="kpi"><strong class="counter" data-target="1200">0</strong><span>Citations</span></div>
-  <div class="kpi"><strong class="counter" data-target="18">0</strong><span>h-index</span></div>
+<div id="scopus-metrics" class="kpis">
+  <div class="kpi"><strong>0</strong><span>Publications</span></div>
+  <div class="kpi"><strong>0</strong><span>Citations</span></div>
+  <div class="kpi"><strong>0</strong><span>h-index</span></div>
 </div>
+<canvas id="scopusChart" style="height:200px"></canvas>
 
 <!-- Google Scholar Section -->
 <h3 style="margin-top:20px; font-size:18px; font-weight:700; color:#0f172a;">Google Scholar</h3>
-<div class="kpis">  <div class="kpi"><strong class="counter" data-target="5">0</strong><span>Publications</span></div>
-  <div class="kpi"><strong class="counter" data-target="12">0</strong><span>Citations</span></div>
-  <div class="kpi"><strong class="counter" data-target="20">0</strong><span>h-index</span></div>
+<div id="scholar-metrics" class="kpis">
+  <div class="kpi"><strong>0</strong><span>Publications</span></div>
+  <div class="kpi"><strong>0</strong><span>Citations</span></div>
+  <div class="kpi"><strong>0</strong><span>h-index</span></div>
 </div>
+<canvas id="scholarChart" style="height:200px"></canvas>
+
 
 
           
@@ -399,6 +403,73 @@ new Chart(document.getElementById('pubTrendChart'), {
     }
   });
 </script>
+  <script>
+async function updateMetrics() {
+  let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqEIPzpRGKsqWfSdyXx6tzAqCNtKjJIUdaaq7lEfhsGbvylLi0BiHnM707gzTJPgv6SoiEyVxcWIAG/pub?output=csv";
+  let response = await fetch(url);
+  let text = await response.text();
+
+  // Parse CSV
+  let rows = text.trim().split("\n").map(r => r.split(","));
+  rows.shift(); // remove header
+
+  let data = { "Scopus": {}, "Google Scholar": {} };
+  rows.forEach(r => {
+    let source = r[0].trim();
+    let metric = r[1].trim();
+    let value = parseInt(r[2]);
+    data[source][metric] = value;
+  });
+
+  // Update Scopus counters
+  document.querySelectorAll("#scopus-metrics .kpi").forEach(kpi => {
+    let label = kpi.querySelector("span").innerText;
+    kpi.querySelector("strong").innerText = data["Scopus"][label] || 0;
+  });
+
+  // Update Google Scholar counters
+  document.querySelectorAll("#scholar-metrics .kpi").forEach(kpi => {
+    let label = kpi.querySelector("span").innerText;
+    kpi.querySelector("strong").innerText = data["Google Scholar"][label] || 0;
+  });
+
+  // Update charts
+  scopusChart.data.datasets[0].data = [
+    data["Scopus"]["Publications"] || 0,
+    data["Scopus"]["Citations"] || 0,
+    data["Scopus"]["h-index"] || 0
+  ];
+  scopusChart.update();
+
+  scholarChart.data.datasets[0].data = [
+    data["Google Scholar"]["Publications"] || 0,
+    data["Google Scholar"]["Citations"] || 0,
+    data["Google Scholar"]["h-index"] || 0
+  ];
+  scholarChart.update();
+}
+
+const scopusChart = new Chart(document.getElementById('scopusChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Publications','Citations','h-index'],
+    datasets: [{ label: 'Scopus', data: [0,0,0], backgroundColor: '#1d4ed8' }]
+  }
+});
+
+const scholarChart = new Chart(document.getElementById('scholarChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Publications','Citations','h-index'],
+    datasets: [{ label: 'Google Scholar', data: [0,0,0], backgroundColor: '#10b981' }]
+  }
+});
+
+// Initial run + auto refresh every 10s
+updateMetrics();
+setInterval(updateMetrics, 10000);
+</script>
+
 </body>
 </html>
 
