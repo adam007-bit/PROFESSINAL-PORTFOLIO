@@ -152,11 +152,6 @@
   </div>
 </div>
 
-<!-- Graphs -->
-<canvas id="pubChart" style="height:200px"></canvas>
-<canvas id="citeChart" style="height:200px"></canvas>
-<canvas id="hChart" style="height:200px"></canvas>
-
           
       
 
@@ -460,15 +455,7 @@ async function updateMetrics() {
   animateValue("scopus-h", parseInt(document.getElementById("scopus-h").innerText), scopusH);
   animateValue("scholar-h", parseInt(document.getElementById("scholar-h").innerText), scholarH);
 
-  // Update charts
-  pubChart.data.datasets[0].data = [scopusPub, scholarPub];
-  pubChart.update();
 
-  citeChart.data.datasets[0].data = [scopusCite, scholarCite];
-  citeChart.update();
-
-  hChart.data.datasets[0].data = [scopusH, scholarH];
-  hChart.update();
   // Update right-side charts too
 pubChartRight.data.datasets[0].data = [scopusPub, scholarPub];
 pubChartRight.update();
@@ -481,30 +468,6 @@ hChartRight.update();
 
 }
 
-// Charts
-const pubChart = new Chart(document.getElementById('pubChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Scopus','Google Scholar'],
-    datasets: [{ label: 'Publications', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
-  }
-});
-
-const citeChart = new Chart(document.getElementById('citeChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Scopus','Google Scholar'],
-    datasets: [{ label: 'Citations', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
-  }
-});
-
-const hChart = new Chart(document.getElementById('hChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Scopus','Google Scholar'],
-    datasets: [{ label: 'h-index', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
-  }
-});
   // Right-side comparison charts (same style as main)
 const pubChartRight = new Chart(document.getElementById('pubChartRight'), {
   type: 'bar',
