@@ -135,25 +135,27 @@
              <a href="#patents">Expertise</a>
           </nav>
           
-     <!-- Scopus Section -->
-<h3 style="margin-top:20px; font-size:18px; font-weight:700; color:#0f172a;">Scopus</h3>
-<div id="scopus-metrics" class="kpis">
-  <div class="kpi"><strong>0</strong><span>Publications</span></div>
-  <div class="kpi"><strong>0</strong><span>Citations</span></div>
-  <div class="kpi"><strong>0</strong><span>h-index</span></div>
+     <!-- Counters -->
+<h3 style="margin-top:20px; font-size:18px; font-weight:700; color:#0f172a;">Metrics</h3>
+<div id="metrics">
+  <div class="kpis">
+    <div class="kpi"><strong id="scopus-pub">0</strong><span>Scopus Publications</span></div>
+    <div class="kpi"><strong id="scholar-pub">0</strong><span>Scholar Publications</span></div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><strong id="scopus-cite">0</strong><span>Scopus Citations</span></div>
+    <div class="kpi"><strong id="scholar-cite">0</strong><span>Scholar Citations</span></div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><strong id="scopus-h">0</strong><span>Scopus h-index</span></div>
+    <div class="kpi"><strong id="scholar-h">0</strong><span>Scholar h-index</span></div>
+  </div>
 </div>
-<canvas id="scopusChart" style="height:200px"></canvas>
 
-<!-- Google Scholar Section -->
-<h3 style="margin-top:20px; font-size:18px; font-weight:700; color:#0f172a;">Google Scholar</h3>
-<div id="scholar-metrics" class="kpis">
-  <div class="kpi"><strong>0</strong><span>Publications</span></div>
-  <div class="kpi"><strong>0</strong><span>Citations</span></div>
-  <div class="kpi"><strong>0</strong><span>h-index</span></div>
-</div>
-<canvas id="scholarChart" style="height:200px"></canvas>
-
-
+<!-- Graphs -->
+<canvas id="pubChart" style="height:200px"></canvas>
+<canvas id="citeChart" style="height:200px"></canvas>
+<canvas id="hChart" style="height:200px"></canvas>
 
           
       
@@ -403,7 +405,26 @@ new Chart(document.getElementById('pubTrendChart'), {
     }
   });
 </script>
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+function animateValue(id, start, end, duration = 1000) {
+  const obj = document.getElementById(id);
+  if (!obj) return;
+  const range = end - start;
+  const stepTime = Math.abs(Math.floor(duration / range)) || 50;
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    obj.innerText = Math.floor(progress * range + start);
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+  requestAnimationFrame(step);
+}
+
 async function updateMetrics() {
   let url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSqEIPzpRGKsqWfSdyXx6tzAqCNtKjJIUdaaq7lEfhsGbvylLi0BiHnM707gzTJPgv6SoiEyVxcWIAG/pub?output=csv";
   let response = await fetch(url);
@@ -421,56 +442,61 @@ async function updateMetrics() {
     data[source][metric] = value;
   });
 
-  // Update Scopus counters
-  document.querySelectorAll("#scopus-metrics .kpi").forEach(kpi => {
-    let label = kpi.querySelector("span").innerText;
-    kpi.querySelector("strong").innerText = data["Scopus"][label] || 0;
-  });
+  // Update counters with animation
+  const scopusPub = data["Scopus"]["Publications"] || 0;
+  const scholarPub = data["Google Scholar"]["Publications"] || 0;
+  const scopusCite = data["Scopus"]["Citations"] || 0;
+  const scholarCite = data["Google Scholar"]["Citations"] || 0;
+  const scopusH = data["Scopus"]["h-index"] || 0;
+  const scholarH = data["Google Scholar"]["h-index"] || 0;
 
-  // Update Google Scholar counters
-  document.querySelectorAll("#scholar-metrics .kpi").forEach(kpi => {
-    let label = kpi.querySelector("span").innerText;
-    kpi.querySelector("strong").innerText = data["Google Scholar"][label] || 0;
-  });
+  animateValue("scopus-pub", parseInt(document.getElementById("scopus-pub").innerText), scopusPub);
+  animateValue("scholar-pub", parseInt(document.getElementById("scholar-pub").innerText), scholarPub);
+  animateValue("scopus-cite", parseInt(document.getElementById("scopus-cite").innerText), scopusCite);
+  animateValue("scholar-cite", parseInt(document.getElementById("scholar-cite").innerText), scholarCite);
+  animateValue("scopus-h", parseInt(document.getElementById("scopus-h").innerText), scopusH);
+  animateValue("scholar-h", parseInt(document.getElementById("scholar-h").innerText), scholarH);
 
   // Update charts
-  scopusChart.data.datasets[0].data = [
-    data["Scopus"]["Publications"] || 0,
-    data["Scopus"]["Citations"] || 0,
-    data["Scopus"]["h-index"] || 0
-  ];
-  scopusChart.update();
+  pubChart.data.datasets[0].data = [scopusPub, scholarPub];
+  pubChart.update();
 
-  scholarChart.data.datasets[0].data = [
-    data["Google Scholar"]["Publications"] || 0,
-    data["Google Scholar"]["Citations"] || 0,
-    data["Google Scholar"]["h-index"] || 0
-  ];
-  scholarChart.update();
+  citeChart.data.datasets[0].data = [scopusCite, scholarCite];
+  citeChart.update();
+
+  hChart.data.datasets[0].data = [scopusH, scholarH];
+  hChart.update();
 }
 
-const scopusChart = new Chart(document.getElementById('scopusChart'), {
+// Charts
+const pubChart = new Chart(document.getElementById('pubChart'), {
   type: 'bar',
   data: {
-    labels: ['Publications','Citations','h-index'],
-    datasets: [{ label: 'Scopus', data: [0,0,0], backgroundColor: '#1d4ed8' }]
+    labels: ['Scopus','Google Scholar'],
+    datasets: [{ label: 'Publications', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
   }
 });
 
-const scholarChart = new Chart(document.getElementById('scholarChart'), {
+const citeChart = new Chart(document.getElementById('citeChart'), {
   type: 'bar',
   data: {
-    labels: ['Publications','Citations','h-index'],
-    datasets: [{ label: 'Google Scholar', data: [0,0,0], backgroundColor: '#10b981' }]
+    labels: ['Scopus','Google Scholar'],
+    datasets: [{ label: 'Citations', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
   }
 });
 
-// Initial run + auto refresh every 10s
+const hChart = new Chart(document.getElementById('hChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Scopus','Google Scholar'],
+    datasets: [{ label: 'h-index', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
+  }
+});
+
+// Run + refresh every 10s
 updateMetrics();
 setInterval(updateMetrics, 10000);
 </script>
 
 </body>
 </html>
-
-
