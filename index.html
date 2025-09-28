@@ -249,23 +249,25 @@
 </div>
       </section>
 
-      <aside>
-        <div class="card">
-          <h3>Scopus Dashboard</h3>
-          <canvas id="kpiChart" style="height:200px"></canvas>
-          <div class="muted" style="margin-top:10px">Interactive chart showing academic performance metrics.</div>
-        </div>
-<!-- Add these inside your <aside> AFTER Scopus Dashboard card -->
+<aside>
+  <div class="card">
+    <h3>Scopus vs Scholar (Publications)</h3>
+    <canvas id="pubChartRight" style="height:200px"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Scopus vs Scholar (Citations)</h3>
+    <canvas id="citeChartRight" style="height:200px"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Scopus vs Scholar (h-index)</h3>
+    <canvas id="hChartRight" style="height:200px"></canvas>
+  </div>
 <div class="card">
-  <h3>Google Scholar</h3>
-  <canvas id="pubTrendChart" style="height:200px"></canvas>
-</div>
-
-
-        <div class="card">
-          <h3>Leadership</h3>
-          <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conference chair.</p>
-        </div>
+ <h3>Leadership</h3>
+ <p class="muted">5 patents filed · 2 commercialized · JECDES founding editor · IEEE reviewer · Conference chair.</p>
+ </div>
 
         <div class="card" id="contact">
   <h3>Contact</h3>
@@ -466,6 +468,16 @@ async function updateMetrics() {
 
   hChart.data.datasets[0].data = [scopusH, scholarH];
   hChart.update();
+  // Update right-side charts too
+pubChartRight.data.datasets[0].data = [scopusPub, scholarPub];
+pubChartRight.update();
+
+citeChartRight.data.datasets[0].data = [scopusCite, scholarCite];
+citeChartRight.update();
+
+hChartRight.data.datasets[0].data = [scopusH, scholarH];
+hChartRight.update();
+
 }
 
 // Charts
@@ -492,6 +504,34 @@ const hChart = new Chart(document.getElementById('hChart'), {
     datasets: [{ label: 'h-index', data: [0,0], backgroundColor: ['#1d4ed8','#10b981'] }]
   }
 });
+  // Right-side comparison charts (same style as main)
+const pubChartRight = new Chart(document.getElementById('pubChartRight'), {
+  type: 'bar',
+  data: {
+    labels: ['Scopus', 'Google Scholar'],
+    datasets: [{ label: 'Publications', data: [0, 0], backgroundColor: ['#1d4ed8','#10b981'] }]
+  },
+  options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} }
+});
+
+const citeChartRight = new Chart(document.getElementById('citeChartRight'), {
+  type: 'bar',
+  data: {
+    labels: ['Scopus', 'Google Scholar'],
+    datasets: [{ label: 'Citations', data: [0, 0], backgroundColor: ['#1d4ed8','#10b981'] }]
+  },
+  options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} }
+});
+
+const hChartRight = new Chart(document.getElementById('hChartRight'), {
+  type: 'bar',
+  data: {
+    labels: ['Scopus', 'Google Scholar'],
+    datasets: [{ label: 'h-index', data: [0, 0], backgroundColor: ['#1d4ed8','#10b981'] }]
+  },
+  options: { responsive:true, plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}} }
+});
+
 
 // Run + refresh every 10s
 updateMetrics();
